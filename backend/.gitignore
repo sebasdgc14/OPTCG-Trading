@@ -1,0 +1,4 @@
+__pycache__/
+.env
+/images
+/app/repository/security/JWTtoken.py
