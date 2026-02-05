@@ -1,5 +1,5 @@
 from fastapi import Depends, status, HTTPException
-import schemas
+from fastapi.security import OAuth2PasswordRequestForm
 from .security import hashing
 from . import user
 from db.database import get_db
@@ -12,7 +12,9 @@ from repository.security.JWTtoken import create_access_token
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 
 
-def authenticate_user(request: schemas.Login, db: Session = Depends(get_db)):
+def authenticate_user(
+    request: OAuth2PasswordRequestForm, db: Session = Depends(get_db)
+):
     user_credentials = user.get_user_email(request.username, db)
     verify_password = hashing.Hash.verify_password(
         request.password, user_credentials.password
