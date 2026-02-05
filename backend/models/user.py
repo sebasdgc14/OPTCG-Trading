@@ -16,6 +16,7 @@ class User(Base):
     __tablename__ = "Users"
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String)
+    username = Column(String)
     password = Column(String)
 
     # RELATIONSHIPS

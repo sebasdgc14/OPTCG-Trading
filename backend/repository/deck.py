@@ -99,6 +99,19 @@ def add_card_to_user_deck(
     return deck_card
 
 
+def get_user_decks(user_id: int, db: Session):
+    """
+    Return all decks owned by the user.
+    """
+
+    return (
+        db.query(Decks)
+        .options(joinedload(Decks.deck_cards).joinedload(DeckCards.card))
+        .filter(Decks.user_id == user_id)
+        .all()
+    )
+
+
 def get_user_deck_details(
     deck_id: int,
     user_id: int,

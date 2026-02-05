@@ -1,5 +1,4 @@
-from scripts import download_images as download
-
+# from scripts import download_images as download
 # from scripts import upload_to_neon as up_neon
 from db.database import SessionLocal
 from scripts import scrape_build_database as scrape
@@ -26,10 +25,8 @@ def run_scrape_all():
 
 def main() -> None:
     print("Running everything")
-    # scrape.scrape_all_sets()
+    scrape.scrape_all_sets()
     # run_scrape()
-    # scrape.scrape_and_append_set("starter_sets_ids", "ST29")
-    # df = scrape.scrape_set("https://en.onepiece-cardgame.com/cardlist/?series=569029")
     # download.dowload_set_imgs("-GREEN/YELLOW Yamato- [ST-28]")
     # up_neon.upload_tables_to_neon()
 

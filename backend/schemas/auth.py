@@ -3,11 +3,17 @@ from pydantic import BaseModel
 
 class User(BaseModel):
     email: str
+    username: str
     password: str
 
 
 class ShowUser(BaseModel):
+    username: str
+
+
+class ProfileUser(BaseModel):
     email: str
+    username: str
 
 
 class Login(BaseModel):
