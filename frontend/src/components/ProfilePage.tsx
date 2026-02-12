@@ -1,38 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import useAuthGuard from "../lib/useAuthGuard";
+import api from "../lib/api";
+
 type Profile = {
   id: number;
   username: string;
   email?: string | null;
 };
 
-function ProtectedPage() {
-  const navigate = useNavigate();
+function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [profile, setProfile] = useState<Profile | null>(null);
-  const { token, isAuthorized, isChecking } = useAuthGuard();
 
   useEffect(() => {
-    if (!isAuthorized || !token) {
-      return;
-    }
-
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await api.get("/profile");
         setProfile(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          if (error.response?.status === 401) {
-            localStorage.removeItem("token");
-            navigate("/users/login");
-            return;
-          }
           const detail = error.response?.data?.detail as string | undefined;
           setError(detail || "Failed to load profile.");
         } else {
@@ -44,15 +31,7 @@ function ProtectedPage() {
     };
 
     fetchProfile();
-  }, [isAuthorized, navigate, token]);
-
-  if (isChecking) {
-    return <div>Checking session...</div>;
-  }
-
-  if (!isAuthorized) {
-    return <div>Redirecting...</div>;
-  }
+  }, []);
 
   if (loading) {
     return <div>Loading profile...</div>;
@@ -77,4 +56,4 @@ function ProtectedPage() {
   );
 }
 
-export default ProtectedPage;
+export default ProfilePage;
