@@ -1,5 +1,6 @@
 from .auth import User, ShowUser, ProfileUser, Login, Token, TokenData
 from .decks import CreateDeck, AddCardToDeck, DeckCardOut, DeckOut
+from .cards import Card
 
 __all__ = [
     "User",
@@ -12,4 +13,5 @@ __all__ = [
     "AddCardToDeck",
     "DeckCardOut",
     "DeckOut",
+    "Card",
 ]
