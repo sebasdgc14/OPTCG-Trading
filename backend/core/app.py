@@ -5,12 +5,14 @@ import models
 from routers import user
 from routers import profile
 from routers import authentication
+from routers import cards
 
 app = FastAPI()
 
 app.include_router(user.router)
 app.include_router(profile.router)
 app.include_router(authentication.router)
+app.include_router(cards.router)
 
 origins = ["http://localhost:5173"]
 
