@@ -1,0 +1,88 @@
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.image-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+.image-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.image-card .overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  color: white;
+  padding: 8px;
+  transform: translateY(100%);
+  transition: transform 180ms ease;
+}
+.image-card:hover .overlay {
+  transform: translateY(0%);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal {
+  background: rgb(184, 57, 57);
+  width: 90%;
+  max-width: 900px;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.modal-body {
+  display: flex;
+  gap: 1rem;
+}
+.modal-left img {
+  width: 280px;
+  height: auto;
+  object-fit: contain;
+}
+.modal-right {
+  text-align: left;
+  flex: 1;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.gallery-controls {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.load-more {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
